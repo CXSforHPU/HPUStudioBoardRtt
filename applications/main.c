@@ -12,7 +12,10 @@
 #include <board.h>
 #include <rtthread.h>
 #include <ports_pin.h>
+
+#ifdef BSP_USING_LED
 #include <led.h>
+#endif
 
 int main(void)
 {

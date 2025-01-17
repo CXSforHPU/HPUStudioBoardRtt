@@ -1,4 +1,4 @@
 #include "rtthread.h"
 #include "ports_pin.h"
 
-void init_LED();
+static int init_LED();

@@ -1,0 +1,13 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd     = GetCurrentDir()
+src     = ["sg90.c"]
+
+CPPPATH = [cwd]
+
+
+group = DefineGroup('SG90', src, depend = ['BSP_USING_SG90'], CPPPATH = CPPPATH)
+
+Return('group')

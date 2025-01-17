@@ -84,7 +84,9 @@ menu "Onboard Peripheral Drivers"
                 default n
                 
         endif
-        
+    menuconfig BSP_USING_SG90
+        bool "Enable SG90"
+        default n
 endmenu
 
 menu "On-chip Peripheral Drivers"
