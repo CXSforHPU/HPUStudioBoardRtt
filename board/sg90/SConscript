@@ -3,7 +3,7 @@ Import('rtconfig')
 from building import *
 
 cwd     = GetCurrentDir()
-src     = ["sg90.c"]
+src     = ["gpio_pwm.c"]
 
 CPPPATH = [cwd]
 

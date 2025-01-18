@@ -27,3 +27,6 @@
 /* OLED */
 #define SDA GET_PIN(B,9)
 #define SCL GET_PIN(B,8)
+
+/* SG90 */
+#define SG90_PWM GET_PIN(A, 0)

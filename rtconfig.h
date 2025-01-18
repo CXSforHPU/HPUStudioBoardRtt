@@ -148,7 +148,9 @@
 #define RT_SERIAL_RB_BUFSZ 64
 #define RT_USING_I2C
 #define RT_USING_I2C_BITOPS
+#define RT_USING_PWM
 #define RT_USING_PIN
+#define RT_USING_HWTIMER
 /* end of Device Drivers */
 
 /* C/C++ and POSIX layer */
@@ -381,7 +383,9 @@
 /* Onboard Peripheral Drivers */
 
 #define BSP_USING_USB_TO_USART
+#define BSP_USING_BEEP
 #define BSP_USING_LED
+#define BSP_USING_SG90
 /* end of Onboard Peripheral Drivers */
 
 /* On-chip Peripheral Drivers */
@@ -390,9 +394,11 @@
 #define BSP_USING_UART
 #define BSP_USING_UART1
 #define BSP_UART1_RX_USING_DMA
-#define BSP_USING_I2C1
-#define BSP_I2C1_SCL_PIN 45
-#define BSP_I2C1_SDA_PIN 46
+#define BSP_USING_TIM
+#define BSP_USING_TIM2
+#define BSP_USING_PWM
+#define BSP_USING_PWM2
+#define BSP_USING_PWM2_CH1
 /* end of On-chip Peripheral Drivers */
 
 /* Board extended module Drivers */
