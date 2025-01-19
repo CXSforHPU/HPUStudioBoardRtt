@@ -386,6 +386,7 @@
 #define BSP_USING_BEEP
 #define BSP_USING_LED
 #define BSP_USING_SG90
+#define BSP_USING_SG90_DEMO
 /* end of Onboard Peripheral Drivers */
 
 /* On-chip Peripheral Drivers */
@@ -394,8 +395,6 @@
 #define BSP_USING_UART
 #define BSP_USING_UART1
 #define BSP_UART1_RX_USING_DMA
-#define BSP_USING_TIM
-#define BSP_USING_TIM2
 #define BSP_USING_PWM
 #define BSP_USING_PWM2
 #define BSP_USING_PWM2_CH1

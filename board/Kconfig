@@ -90,6 +90,14 @@ menu "Onboard Peripheral Drivers"
         select BSP_USING_PWM
         select BSP_USING_PWM2
         select BSP_USING_PWM2_CH1
+
+        if BSP_USING_SG90
+            config BSP_USING_SG90_DEMO
+                bool "Enable sg90 demo"
+                default n
+                
+        endif
+
 endmenu
 
 menu "On-chip Peripheral Drivers"
@@ -148,21 +156,6 @@ menu "On-chip Peripheral Drivers"
                 range 0 143
                 default 25
         endif
-        
-    menuconfig BSP_USING_TIM
-        bool "Enable timer"
-        default n
-        select RT_USING_HWTIMER
-        if BSP_USING_TIM
-            config BSP_USING_TIM2
-                bool "Enable TIM2"
-                default n
-
-            config BSP_USING_TIM3
-                bool "Enable TIM3"
-                default n
-
-        endif
 
     menuconfig BSP_USING_PWM
         bool "Enable PWM"
@@ -176,13 +169,7 @@ menu "On-chip Peripheral Drivers"
                 config BSP_USING_PWM2_CH1
                     bool "Enable PWM2 channel1"
                     default n
-                    select BSP_USING_TIM
-                    select BSP_USING_HWTIMER
-                    select BSP_USING_TIM2
                     
-                config BSP_USING_PWM2_CH2
-                    bool "Enable PWM2 channel2"
-                    default n
             endif
 
         menuconfig BSP_USING_PWM3
@@ -192,31 +179,17 @@ menu "On-chip Peripheral Drivers"
                 config BSP_USING_PWM3_CH1
                     bool "Enable PWM3 channel1"
                     default n
-                    
-                    select BSP_USING_TIM
-                    select BSP_USING_HWTIMER
-                    select BSP_USING_TIM3
 
                 config BSP_USING_PWM3_CH2
                     bool "Enable PWM3 channel2"
-                    default n
-                    select BSP_USING_TIM
-                    select BSP_USING_HWTIMER
-                    select BSP_USING_TIM3
 
                 config BSP_USING_PWM3_CH3
                     bool "Enable PWM3 channel3"
                     default n
-                    select BSP_USING_TIM
-                    select BSP_USING_HWTIMER
-                    select BSP_USING_TIM3
                 
                 config BSP_USING_PWM3_CH4
                     bool "Enable PWM3 channel4"
                     default n
-                    select BSP_USING_TIM
-                    select BSP_USING_HWTIMER
-                    select BSP_USING_TIM3
 
             endif
         endif

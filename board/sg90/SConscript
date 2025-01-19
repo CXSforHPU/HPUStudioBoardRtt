@@ -3,9 +3,12 @@ Import('rtconfig')
 from building import *
 
 cwd     = GetCurrentDir()
-src     = ["gpio_pwm.c"]
+src     = ["sg90.c"]
 
 CPPPATH = [cwd]
+
+if GetDepend("BSP_USING_SG90_DEMO"):
+    src +=["sg90Demo.c"]
 
 
 group = DefineGroup('SG90', src, depend = ['BSP_USING_SG90'], CPPPATH = CPPPATH)
