@@ -95,6 +95,29 @@ menu "Onboard Peripheral Drivers"
             config BSP_USING_SG90_DEMO
                 bool "Enable sg90 demo"
                 default n
+            config PWM_DEV_NAME
+                string "pwm device name,example: pwm2"
+                default "pwm2"
+            config PWM_DEV_CHANNEL
+                int "the channel of PWM_DEV_NAME"
+                range 1 10
+                default 1
+            config MAX_ANGLE
+                int "the max pulse ns"
+                range 0 999999999
+                default 2500000
+            config MIN_ANGLE
+                int "the min pulse ns"
+                range 0 999999999
+                default 500000
+            config SG90_MAX_ANGLE
+                int "the max angle of your servo"
+                range 0 360
+                default 180
+            config SG90_PERIOD
+                int "the period of sg90"
+                range 0 999999999
+                default 20000000
                 
         endif
 

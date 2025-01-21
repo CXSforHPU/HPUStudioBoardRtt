@@ -387,6 +387,12 @@
 #define BSP_USING_LED
 #define BSP_USING_SG90
 #define BSP_USING_SG90_DEMO
+#define PWM_DEV_NAME "pwm2"
+#define PWM_DEV_CHANNEL 1
+#define MAX_ANGLE 2500000
+#define MIN_ANGLE 500000
+#define SG90_MAX_ANGLE 180
+#define SG90_PERIOD 20000000
 /* end of Onboard Peripheral Drivers */
 
 /* On-chip Peripheral Drivers */

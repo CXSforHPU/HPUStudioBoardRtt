@@ -1,6 +1,13 @@
 
 #include <sg90.h>
 
+sg90_cfg my_sg90_config = {
+    .period = SG90_PERIOD, // 20ms 周期
+    .dir = SG90_CLOCKWISE,
+    .pulse = MAX_ANGLE, // 1.5ms 脉冲宽度
+    .name = RT_NULL,
+    .channel = PWM_DEV_CHANNEL,
+};
 
 /* 初始化 */
 rt_err_t sg90_init(sg90_cfg_t cfg)
@@ -61,18 +68,20 @@ rt_err_t sg90_control(sg90_cfg_t cfg,int angle,int dir)
     if (cfg->dir == SG90_CLOCKWISE)
     {
         cfg->pulse += ANGEL2PULSE(angle);
-        if (cfg->pulse > MAX_ANGLE)
+        if (cfg->pulse >= MAX_ANGLE)
         {
             cfg->pulse = MAX_ANGLE;
+            rt_kprintf("sg90 is max angle\n");
         }
         return RT_EOK;
     }
     else if (cfg->dir == SG90_ANTICLOCKWISE)
     {
         cfg->pulse -= ANGEL2PULSE(angle);
-        if (cfg->pulse < MIN_ANGLE)
+        if (cfg->pulse <= MIN_ANGLE)
         {
             cfg->pulse = MIN_ANGLE;
+            rt_kprintf("sg90 is min angle\n");
         }
         return RT_EOK;
     }
@@ -94,11 +103,11 @@ rt_err_t sg90_get(sg90_cfg_t cfg)
     switch (cfg->dir)
     {
     case SG90_ANTICLOCKWISE:
-        rt_kprintf("sg90 get angle is %s\n","ANTICLOCKWISE");
+        rt_kprintf("sg90 get direction is %s\n","ANTICLOCKWISE");
         break;
         
     case SG90_CLOCKWISE:
-        rt_kprintf("sg90 get angle is %s\n","CLOCKWISE");
+        rt_kprintf("sg90 get direction is %s\n","CLOCKWISE");
         break;
     
     default:
@@ -112,6 +121,34 @@ rt_err_t sg90_get(sg90_cfg_t cfg)
 
     return RT_EOK;
 
+}
+
+int sg90_get_pulse(sg90_cfg_t cfg)
+{
+    int *pulse = &cfg->pulse;
+    if (cfg->name == RT_NULL)
+    {
+        rt_kprintf("not find the sg90 device\n");
+
+        return RT_ERROR;
+    }
+    else{
+        
+        return cfg->pulse;
+    }
+}
+
+int sg90_get_angle(sg90_cfg_t cfg)
+{
+    if (cfg->name == RT_NULL)
+    {
+        rt_kprintf("not find the sg90 device\n");
+
+        return RT_ERROR;
+    }
+    else{
+        return PULSE2ANGEL(sg90_get_pulse(cfg));
+    }
 }
 
 // 

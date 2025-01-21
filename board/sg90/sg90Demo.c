@@ -1,15 +1,6 @@
 #include "sg90.h"
 
 
-/* 初始化结构体 */
-static sg90_cfg my_sg90_config = {
-    .period = 20000000, // 20ms 周期
-    .dir = SG90_CLOCKWISE,
-    .pulse = MAX_ANGLE, // 1.5ms 脉冲宽度
-    .name = RT_NULL,
-    .channel = PWM_DEV_CHANNEL,
-};
-
 static int set_angle(int argc,char **argv)
 {
     
