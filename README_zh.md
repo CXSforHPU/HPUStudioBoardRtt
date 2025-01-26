@@ -37,62 +37,65 @@ STM32F103C8T6最小系统，采用SWD调试接口，可以用3个接口就能完
 
 ## 参考文档
 
- [Cortex-M3权威指南](documents\参考文档\Cortex-M3权威指南.pdf) 
+ [Cortex-M3权威指南](documents\stm32Documents\Cortex-M3权威指南.pdf) 
 
- [STM32F10xxx Cortex-M3编程手册](documents\参考文档\STM32F10xxx Cortex-M3编程手册.pdf) 
+ [STM32F10xxxCortex-M3编程手册](documents\stm32Documents\STM32F10xxxCortex-M3编程手册.pdf) 
 
- [STM32F10xxx参考手册(英文)](documents\参考文档\STM32F10xxx参考手册（英文）.pdf) 
+ [STM32F10xxx参考手册(英文)](documents\stm32Documents\STM32F10xxx参考手册（英文）.pdf) 
 
- [STM32F10xxx参考手册(中文)](documents\参考文档\STM32F10xxx参考手册（中文）.pdf) 
+ [STM32F10xxx参考手册(中文)](documents\stm32Documents\STM32F10xxx参考手册（中文）.pdf) 
 
- [STM32F10xxx闪存编程参考手册(英文)](documents\参考文档\STM32F10xxx闪存编程参考手册（英文）.pdf) 
+ [STM32F10xxx闪存编程参考手册(英文)](documents\stm32Documents\STM32F10xxx闪存编程参考手册（英文）.pdf) 
 
- [STM32F10xxx闪存编程参考手册(中文)](documents\参考文档\STM32F10xxx闪存编程参考手册（中文）.pdf) 
+ [STM32F10xxx闪存编程参考手册(中文)](documents\stm32Documents\STM32F10xxx闪存编程参考手册（中文）.pdf) 
 
- [STM32F103C8T6引脚定义](documents\参考文档\STM32F103C8T6引脚定义.xlsx) 
+ [STM32F103C8T6引脚定义](documents\stm32Documents\STM32F103C8T6引脚定义.xlsx) 
 
- [STM32F103x8B数据手册(英文)](documents\参考文档\STM32F103x8B数据手册（英文）.pdf )
+ [STM32F103x8B数据手册(英文)](documents\stm32Documents\STM32F103x8B数据手册（英文）.pdf )
 
- [STM32F103x8B数据手册(中文)](documents\参考文档\STM32F103x8B数据手册（中文）.pdf) 
+ [STM32F103x8B数据手册(中文)](documents\stm32Documents\STM32F103x8B数据手册（中文）.pdf) 
 
- [STM32F103xx固件函数库用户手册](documents\参考文档\STM32F103xx固件函数库用户手册.pdf) 
+ [STM32F103xx固件函数库用户手册](documents\stm32Documents\STM32F103xx固件函数库用户手册.pdf) 
 
 ## 模块资料
 
 ### FLASH
 
- [C97521_NOR+FLASH_W25Q128JVSIQ_规格书_WINBOND(华邦)NOR+FLASH规格书 ](documents\模块资料\FLASH\C97521_NOR+FLASH_W25Q128JVSIQ_规格书_WINBOND(华邦)NOR+FLASH规格书 (1).PDF) 
+ [C97521_NOR+FLASH_W25Q128JVSIQ_规格书_WINBOND(华邦)NOR+FLASH规格书](documents\moduleDocuments\FLASH\C97521_NOR+FLASH_W25Q128JVSIQ_规格书_WINBOND(华邦)NOR+FLASH规格书.PDF) 
 
 ### SG90舵机
 
- [舵机的相关原理与控制原理](documents\模块资料\SG90舵机\SG90 9G舵机\舵机的相关原理与控制原理.doc) 
+ [舵机的相关原理与控制原理](documents\moduleDocuments\SG90\SG90_9G\舵机的相关原理与控制原理.doc) 
 
-![舵机使用说明](F:\HPU\HPUStudioBoardRtt-master\documents\模块资料\SG90舵机\舵机使用说明.png)
+![舵机使用](documents\moduleDocuments\SG90\servo.png)
 
 ### ST-LINK
 
- [keil5.20下ST-Link+V2设置说明-基于编程调试stm32](documents\模块资料\ST-LINK\keil5.20下ST-Link+V2设置说明-基于编程调试stm32.pdf) 
+ [keil5.20下ST-Link+V2设置说明-基于编程调试stm32](documents\moduleDocuments\ST-LINK\keil5.20下ST-Link+V2设置说明-基于编程调试stm32.pdf) 
 
 ### 光敏电阻传感器
 
- [C11302_光敏电阻_GL5626（10-15K）_规格书_JCHL(晶创和立)光敏电阻规格书](documents\模块资料\光敏电阻传感器\C11302_光敏电阻_GL5626（10-15K）_规格书_JCHL(晶创和立)光敏电阻规格书.PDF) 
+ [C11302_光敏电阻_GL5626（10-15K）_规格书_JCHL(晶创和立)光敏电阻规格书](documents\moduleDocuments\Photoresistance_sensor\sensor.PDF) 
 
 ### 红外接收
 
- [C72048_红外遥控接收头(IRM)_IRM-56384_规格书_EVERLIGHT(亿光)红外遥控接收头规格书](documents\模块资料\红外接收\C72048_红外遥控接收头(IRM)_IRM-56384_规格书_EVERLIGHT(亿光)红外遥控接收头规格书.PDF) 
+ [C72048_红外遥控接收头(IRM)_IRM-56384_规格书_EVERLIGHT(亿光)红外遥控接收头规格书](documents\moduleDocuments\Infrared_reception\C72048_红外遥控接收头(IRM)_IRM-56384_规格书_EVERLIGHT(亿光)红外遥控接收头规格书.PDF) 
 
 ### 可调电阻
 
- [可调电阻](documents\模块资料\可调电阻\可调电阻.pdf) 
+ [可调电阻](documents\moduleDocuments\Adjustable_resistanceAdjustable_resistanceAdjustable_resistance\可调电阻.pdf) 
 
 ### 显示屏
 
- [中景园电子0.96寸OLED使用文档新手必看V2.0](documents\模块资料\显示屏\中景园电子0.96寸OLED使用文档新手必看V2.0.pdf) 
+ [中景园电子0.96寸OLED使用文档新手必看V2.0](documents\moduleDocuments\Display\中景园电子0.96寸OLED使用文档新手必看V2.0.pdf)
 
 ### 有源蜂鸣器
 
- [C360615_蜂鸣器_SUN-12095-5VPA7.6_规格书_S&S(海旭)蜂鸣器规格书](documents\模块资料\有源蜂鸣器\C360615_蜂鸣器_SUN-12095-5VPA7.6_规格书_S&S(海旭)蜂鸣器规格书.PDF) 
-
+ [C360615_蜂鸣器_SUN-12095-5VPA7.6_规格书_S&S(海旭)蜂鸣器规格书](documents\moduleDocuments\Active_buzzer\C360615_蜂鸣器_SUN-12095-5VPA7.6_规格书_S&S(海旭)蜂鸣器规格书.PDF) 
+## 具体详细资料包含标准库
+* ***通过网盘分享的文件：学习板资料.zip
+链接: https://pan.baidu.com/s/1j8Zw8828-aEr8VPJzYhy1Q?pwd=tkv6 提取码: tkv6 
+--来自百度网盘超级会员v3的分享***
 ## 外设支持
 
 本 BSP 目前对外设的支持情况如下：
