@@ -1,319 +1,203 @@
-# STM32F103C8 Blue Pill Board BSP Introduction
+# STM32F103C8T6开发板(BluePill) BSP 说明
 
- [[中文]](README_zh.md)
+[[English]](README_EN.md)
+[[部署教程]](deplay.md)
 
-[TOC]
+## 简介
 
-This document records the introduction of the BSP (board support package) provided by the RT-Thread development team for the STM32F103C8 Blue Pill development board.
+本文档为 STM32F103C8T6开发板(BluePill) 的 BSP (板级支持包) 说明。
 
-The document is covered in four parts:
+主要内容如下：
 
-- Onboard Resources
-- Quickly Get Started
-- Advanced Features
-- Read more
+- 开发板资源介绍
+- BSP 快速上手
+- 进阶使用方法
 
-By reading the ***Quickly Get Started*** section developers can quickly get their hands on this BSP and run RT-Thread on the board. More advanced features will be introduced in the Advanced Features section to help developers take advantage of RT-Thread to drive more on-board resources.
+通过阅读快速上手章节开发者可以快速地上手该 BSP，将 RT-Thread 运行在开发板上。在进阶使用指南章节，将会介绍更多高级功能，帮助开发者利用 RT-Thread 驱动更多板载资源。
 
-Video tutorial: https://www.youtube.com/watch?v=0PwBBYXQ08g
 
 
+## 开发板介绍
 
-## 1 MCU Resources
+STM32F103C8T6开发板，采用SWD调试接口，可以用3个接口就能完成调试下载的任务，采用了官方建议的负载RTC晶振方案，小体积高频率的STM32实验板
 
-The STM32F103Cx medium-density performance line family incorporates the high-performance ARM®Cortex®-M3 32-bit RISC core operating at a 72 MHz frequency, high-speed embedded memories (Flash memory up to 128 Kbytes and SRAM up to 20 Kbytes), and an extensive range of enhanced I/Os and peripherals connected to two APB buses. All devices offer two 12-bit ADCs, three general purpose 16-bit timers plus one PWM timer, as well as standard and advanced communication interfaces: up to two I2Cs and SPIs, three USARTs, an USB and a CAN.
+开发板外观如下图所示：
 
-The devices operate from a 2.0 to 3.6 V power supply. They are available in both the –40 to +85 °C temperature range and the –40 to +105 °C extended temperature range. A comprehensive set of power-saving mode allows the design of low-power applications.
-The STM32F103Cx medium-density performance line family includes devices in six different package types: from 36 pins to 100 pins. Depending on the device chosen, different sets of peripherals are included, the description below gives an overview of the complete range of peripherals proposed in this family.
-These features make the STM32F103xx medium-density performance line microcontroller family suitable for a wide range of applications such as motor drives, application control, medical and handheld equipment, PC and gaming peripherals, GPS platforms, industrial applications, PLCs, inverters, printers, scanners, alarm systems, video intercoms, and HVACs.
+![STM32F103.png](figures/STM32F103.png)
 
-KEY FEATURES
+该开发板常用 **板载资源** 如下：
 
-- ARM® 32-bit Cortex®-M3 CPU Core
-  - 72 MHz maximum frequency,1.25 DMIPS/MHz (Dhrystone 2.1) performance at 0 wait state memory access
-  - Single-cycle multiplication and hardware division
-- Memories
-  - 64 or 128 Kbytes of Flash memory
-  - 20 Kbytes of SRAM
-- Clock, reset and supply management
-  - 2.0 to 3.6 V application supply and I/Os
-  - POR, PDR, and programmable voltage detector (PVD)
-  - 4-to-16 MHz crystal oscillator
-  - Internal 8 MHz factory-trimmed RC
-  - Internal 40 kHz RC
-  - PLL for CPU clock
-  - 32 kHz oscillator for RTC with calibration
-- Low-power
-  - Sleep, Stop and Standby modes
-  - VBAT supply for RTC and backup registers
-- 2 x 12-bit, 1 μs A/D converters (up to 16 channels)
-  - Conversion range: 0 to 3.6 V
-  - Dual-sample and hold capability
-  - Temperature sensor
-- DMA
-  - 7-channel DMA controller
-  - Peripherals supported: Timers, ADC, SPIs, I2Cs and USARTs
+- MCU：STM32F103C8T6，主频 72MHz，128KB ROM，20KB RAM
+- 外部 RAM：无
+- 外部 FLASH：有
+- 常用外设
+  - OLED屏幕
+  - SG90舵机
+  - 串口转USB
+  - ST-LINK烧录器
+  - 光敏传感
+  - 有源蜂鸣器
+  - 红外接收器
+- 常用接口：无
+- 调试接口：SWD调试接口
 
-- Up to 80 fast I/O ports
-  - 26/37/51/80 I/Os, all mappable on 16 external interrupt vectors and almost all 5 V-tolerant
-- Debug mode
-  - Serial wire debug (SWD) & JTAG interfaces
-- 7 timers
-  - Three 16-bit timers, each with up to 4 IC/OC/PWM or pulse counter and quadrature (incremental) encoder input
-  - 16-bit, motor control PWM timer with dead-time generation and emergency stop
-  - 2 watchdog timers (Independent and Window)
-  - SysTick timer 24-bit downcounter
-- Up to 9 communication interfaces
-  - Up to 2 x I2C interfaces (SMBus/PMBus)
-  - Up to 3 USARTs (ISO 7816 interface, LIN, IrDA capability, modem control)
-  - Up to 2 SPIs (18 Mbit/s)
-  - CAN interface (2.0B Active)
-  - USB 2.0 full-speed interface
-- CRC calculation unit, 96-bit unique ID
-- Packages are ECOPACK®
+## 参考文档
 
+ [Cortex-M3权威指南](documents/stm32Documents/Cortex-M3权威指南.pdf) 
 
+ [STM32F10xxxCortex-M3编程手册](documents/stm32Documents/STM32F10xxxCortex-M3编程手册.pdf) 
 
-## 2 Onboard Resources
+ [STM32F10xxx参考手册(英文)](documents/stm32Documents/STM32F10xxx参考手册（英文）.pdf) 
 
-- MCU：STM32F103C8T6 @72MHz, 64KB FLASH (can be extended to 128KB) , 20KB RAM
+ [STM32F10xxx参考手册(中文)](documents/stm32Documents/STM32F10xxx参考手册（中文）.pdf) 
 
-- Peripherals
-  
-  - LED：PC13
-  
-- Debug IO interface type: ST-LINK V2 (SWD)
+ [STM32F10xxx闪存编程参考手册(英文)](documents/stm32Documents/STM32F10xxx闪存编程参考手册（英文）.pdf) 
 
+ [STM32F10xxx闪存编程参考手册(中文)](documents/stm32Documents/STM32F10xxx闪存编程参考手册（中文）.pdf) 
 
-![board](figures/Bluepill_pinout.png)
+ [STM32F103C8T6引脚定义](documents/stm32Documents/STM32F103C8T6引脚定义.xlsx) 
 
+ [STM32F103x8B数据手册(英文)](documents/stm32Documents/STM32F103x8B数据手册（英文）.pdf )
 
+ [STM32F103x8B数据手册(中文)](documents/stm32Documents/STM32F103x8B数据手册（中文）.pdf) 
 
+ [STM32F103xx固件函数库用户手册](documents/stm32Documents/STM32F103xx固件函数库用户手册.pdf) 
 
+## 模块资料
 
-## 3 Quickly Get Started
+### FLASH
 
-This BSP provides MDK4, MDK5, and IAR projects for developers and it supports the GCC development environment. Here's an example of the MDK5 development environment, to introduce how to run the system.
+ [C97521_NOR+FLASH_W25Q128JVSIQ_规格书_WINBOND(华邦)NOR+FLASH规格书](documents/moduleDocuments/FLASH/C97521_NOR+FLASH_W25Q128JVSIQ_规格书_WINBOND(华邦)NOR+FLASH规格书.PDF) 
 
-### 3.1 Use ST-LINK Debugger to connect the Blue Pill Board
+### SG90舵机
 
-ST-LINK driver: 
+ [舵机的相关原理与控制原理](documents/moduleDocuments/SG90/SG90_9G/舵机的相关原理与控制原理.doc) 
 
-> https://www.st.com/en/development-tools/stsw-link009.html
+![舵机使用](figures/servo.png)
 
-| ST-LINK Debugger | Blue Pill 4-Pin SWD |
-| :--------------: | :-----------------: |
-|      SWDIO       |         IO          |
-|      SWDCLK      |         CLK         |
-|      VCC3.3      |       VCC3.3        |
-|       GND        |         GND         |
+### ST-LINK
 
-![connection](figures/connecter1.jpeg)
+ [keil5.20下ST-Link+V2设置说明-基于编程调试stm32](documents/moduleDocuments/ST-LINK/keil5.20下ST-Link+V2设置说明-基于编程调试stm32.pdf) 
 
-![connection](figures/connecter2.png)
+### 光敏电阻传感器
 
-![connection](figures/connecter3.jpeg)
+ [C11302_光敏电阻_GL5626（10-15K）_规格书_JCHL(晶创和立)光敏电阻规格书](documents/moduleDocuments/Photoresistance_sensor/sensor.PDF) 
 
+### 红外接收
 
+ [C72048_红外遥控接收头(IRM)_IRM-56384_规格书_EVERLIGHT(亿光)红外遥控接收头规格书](documents/moduleDocuments/Infrared_reception/C72048_红外遥控接收头(IRM)_IRM-56384_规格书_EVERLIGHT(亿光)红外遥控接收头规格书.PDF) 
 
-### 3.2 Use FTDI adapter(USB to UART) to connect the Blue Pill Board's PA9(Tx) and PA10(Rx) pins
+### 可调电阻
 
-FTDI adapter driver:
+ [可调电阻](documents/moduleDocuments/Adjustable_resistanceAdjustable_resistanceAdjustable_resistance/可调电阻.pdf) 
 
-> https://www.ftdichip.com/FTDrivers.htm
+### 显示屏
 
-You can use other USB to UART adapters to replace FTDI adapter.
+ [中景园电子0.96寸OLED使用文档新手必看V2.0](documents/moduleDocuments/Display/中景园电子0.96寸OLED使用文档新手必看V2.0.pdf)
 
-| FTDI adapter(USB to UART) |            Blue Pill Board            |
-| :-----------------------: | :-----------------------------------: |
-|            Tx             |                PA10 Rx                |
-|            Rx             |                PA9 Tx                 |
-|            GND            |                  GND                  |
-|          VCC 3.3          | **Don't need to connect VCC 3.3 pin** |
-|           VCC 5           |  **Don't need to connect VCC 5 pin**  |
+### 有源蜂鸣器
 
+ [C360615_蜂鸣器_SUN-12095-5VPA7.6_规格书_S&S(海旭)蜂鸣器规格书](documents/moduleDocuments/Active_buzzer/C360615_蜂鸣器_SUN-12095-5VPA7.6_规格书_S&S(海旭)蜂鸣器规格书.PDF) 
+## 具体详细资料包含标准库
+* ***通过网盘分享的文件：学习板资料.zip
+链接: https://pan.baidu.com/s/1j8Zw8828-aEr8VPJzYhy1Q?pwd=tkv6 提取码: tkv6 
+--来自百度网盘超级会员v3的分享***
+## 外设支持
 
+本 BSP 目前对外设的支持情况如下：
 
-![connection](figures/connection.jpg)
+| **板载外设**      | **支持情况** | **备注**                              |
+| :----------------- | :----------- | :------------------------------------- |
+| 	红色LED1		 |     支持      |       PA1                     |
+| 红色LED2	| 支持 | PA2 |
+| 红色LED3	| 支持 | PA3 |
+| 红色LED4	| 支持 | PA4 |
+| 红色LED5	| 支持 |  |
+| PWM舵机	| 支持 | PA0 |
+| FLASH存储	| 支持 | SPI1  PA5/PA6/PB10/PB11 |
+| OLED屏幕	| 支持 | SDA(PB9)/SDL(PB8) |
+| 有源蜂鸣器	| 支持 | PB12 |
+| 光敏传感	| 支持 | PB13 |
+| 串口转USB	| 支持 | CH340N  PA9/PA10 |
+| 红外接收装置	| 支持 | PB0 |
+| 按键3	| 支持 | PB1 |
+| 按键4	| 支持 | PB15 |
+| **片上外设**      | **支持情况** | **备注**                              |
+| GPIO              | 支持 | GPIOA-GPIOE |
+| ADC | 支持 | ADC1 |
+| SPI | 支持 | SPI2 |
+| I2C | 支持 | I2C1  SCL(PB8)/SDA(PB9) |
+| UART | 支持 | UART1/UART2/UART3 |
+| RTC | 支持 |  |
+| PWM | 支持 | PWM2(channel1)/PWM3(channel1,channel2,channel3,channel4) |
+| USB Divice | 支持 | |
+| UDID | 支持 | |
 
 
 
-### 3.3 Make sure Jumper Position (Both 0 Position)
+## 使用说明
 
-| BOOTx | High / Low |
-| :---: | :--------: |
-| BOOT0 |     0      |
-| BOOT1 |     0      |
+使用说明分为如下两个章节：
 
-![connection](figures/jumper.jpg)
+- 快速上手
 
+    本章节是为刚接触 RT-Thread 的新手准备的使用说明，遵循简单的步骤即可将 RT-Thread 操作系统运行在该开发板上，看到实验效果 。
 
+- 进阶使用
 
-### 3.4 Compile and Download
+    本章节是为需要在 RT-Thread 操作系统上使用更多开发板资源的开发者准备的。通过使用 ENV 工具对 BSP 进行配置，可以开启更多板载资源，实现更多高级功能。
 
-#### 3.4.1 Using RT-Studio to create and compile the project
 
-***Please watch this tutorial video:***
+### 快速上手
 
-- [RT-Thread RTOS Tutorial #3 | Advanced Skills - YouTube](https://www.youtube.com/watch?v=k4-ArvvIiR8)
+本 BSP 为开发者提供 MDK4、MDK5 和 IAR 工程，并且支持 GCC 开发环境。下面以 MDK5 开发环境为例，介绍如何将系统运行起来。
 
-#### 3.4.2 Using Keil-MDK or IAR to compile the project
+#### 硬件连接
 
-- Double-click the `project.uvprojx` file to open the MDK-Keil5 project  (**NOT** `template.uvprojx` file)
-- Click the “option for target” button
-  - Debug: Choose "ST-LINK Debugger" and Click "Setting" button:
-    - Port: choose "SW (Serial Wire)"
-    - Flash Download: check "Reset and Run"
+使用数据线连接开发板到 PC，打开电源开关。
 
-- Compile and download the program to the board
+#### 编译下载
 
+双击 project.uvprojx 文件，打开 MDK5 工程，编译并下载程序到开发板。
 
+> 工程默认配置使用 J-Link 仿真器下载程序，在通过 J-Link 连接开发板的基础上，点击下载按钮即可下载程序到开发板
 
-### 3.5 Running Results
+#### 运行结果
 
-After the program is successfully downloaded, the system runs automatically. Observe the running results of the LED on the development board, and you will see the LED is flashing periodically.
+下载程序成功之后，系统会自动运行，LED 闪烁
 
-The COM port connects to **USART1 (PA9-Tx, PA10-Rx) by default**, and when the corresponding serial port (**115200**-8-1-N) is opened in the terminal tool, the output information of RT-Thread can be seen when the device is reset:
+连接开发板对应串口到 PC , 在终端工具里打开相应的串口（115200-8-1-N），复位设备后，可以看到 RT-Thread 的输出信息:
 
-```shell
+```bash
  \ | /
 - RT -     Thread Operating System
- / | \     4.0.0 build Dec 21 2018
- 2006 - 2018 Copyright by rt-thread team
+ / | \     4.0.1 build Mar 10 2019
+ 2006 - 2019 Copyright by rt-thread team
 msh >
 ```
+### 进阶使用
 
+此 BSP 默认只开启了 GPIO 和 串口1 的功能，如果需使用 ADC、SPI等更多高级功能，再用 ENV 工具对BSP 进行配置，步骤如下：
 
+1. 在 bsp 下打开 env 工具。
 
-### 3.6 Terminal tool - PuTTy 
+2. 输入`menuconfig`命令配置工程，配置好之后保存退出。
 
-If you have no terminal tool software available, you can download ***PuTTy***:
+3. 输入`pkgs --update`命令更新软件包。
 
->  https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+4. 输入`scons --target=mdk4/mdk5/iar` 命令重新生成工程。
 
-![putty](figures/putty.png)
+本章节更多详细的介绍请参考 [STM32 系列 BSP 外设驱动使用教程](../docs/STM32系列BSP外设驱动使用教程.md)。
 
 
 
-These two videos will show you how to use PuTTy:
+## 注意事项
 
-> https://www.youtube.com/watch?v=ab4ilbsteWU
->
-> https://www.youtube.com/watch?v=dO-BMOzNKcI
+- 只能用USB转TTL连接PC机 ;
 
 
 
-### 3.7 Peripheral Condition
+## 感谢 & 维护
 
-Each peripheral supporting condition for this BSP is as follows:
-
-| **On-board Peripherals** | **Support** | **Remark**                                                   |
-| ------------------------ | ----------- | ------------------------------------------------------------ |
-| LED                      | √           | PC13                                                         |
-| USB Virtual Serial Port  | √           | USB CDC                                                      |
-| **On-chip Peripherals**  | **Support** | **Remark**                                                   |
-| GPIO                     | √           |                                                              |
-| UART                     | √           | USART1 / USART2                                              |
-| SPI                      | √           | SPI1                                                         |
-| I2C                      | √           | software simulate                                            |
-| USB                      | √           | USB Device                                                   |
-| ADC                      | √           | ADC1 IN1                                                     |
-| RTC                      | √           | Support for external crystal oscillator and internal low-speed clocks |
-| PWM                      |             |                                                              |
-| FLASH                    |             |                                                              |
-| IWG                      |             |                                                              |
-| UID                      | √           | STM32 Unique Device Identifier                               |
-
-
-
-### 3.8 MDK-Keil5 Simulator
-
- If you haven't had a real Blue Pill Board yet, you may use MDK-Keil5 simulator to simulate to run RT-Thread on Blue Pill Board. Please Double-click the `project.uvprojx` file to open the MDK-Keil5 project  (**NOT** `template.uvprojx` file).
-
-![simulator1](figures/simulator1.png)
-
-
-
-![simulator2](figures/simulator2.jpg)
-
-
-
-![simulator3](figures/simulator3.png)
-
-
-
-## 4 **Advanced Features**
-
-This BSP only enables GPIO and USART1 by default. If you need more advanced features such as SPI, ADC, or to add software packages, you need to configure the BSP with RT-Thread [ENV tool](https://www.rt-thread.io/download.html?download=Env), as follows:
-
-1. Open the ENV tool under the specific BSP folder, eg: *bsp/stm32/stm32f103-blue-pill* ;
-2. Enter `menuconfig` command to configure the project, then save and exit;
-3. Enter `pkgs --update` command to update the package;
-4. Enter `scons --target=mdk4/mdk5/iar` command to regenerate the project.
-
-Learn how to use RT-Thread ENV, click [Here](https://github.com/RT-Thread/rt-thread/blob/master/documentation/env/env.md).
-
-
-
-### 4.1 How to use USB virtual com as a console device
-
-**Step 1: Enable USB device.**
-
-![usb_device1](figures/usb_device1.png)
-
-
-
-**Step 2: Enable USB Device Driver and enable to use device as CDC device.**
-
-![usb_device2](figures/usb_device2.png)
-
-
-
-**Step 3: Select vconsole (virtual console) software package.**
-
-![vconsole](figures/vconsole.png)
-
-
-
-**Step 4: Add these codes in main function which is located in 'Applications' folder.**
-
-```c
-#include <vconsole.h>
-
-rt_device_t dev = rt_device_find("vcom");
-vconsole_switch(dev);
-```
-
-![usb_code](figures/usb_code.png)
-
-
-
-**Step 5: Download the new program to your blue pill board.** 
-
-Re-plug the USB cable and you will find a new serial (virtual com, 115200, 8-N-1) device in your computer. Then, you can use the USB instead of the UART-USB adapter as a console and send commands through USB cable. If you reset or reboot the blue pill board, you'll still need to re-plug the USB cable. 
-
-
-
-### 4.2 How to extend Blue Pill board’s Flash space
-
-According to ST official datasheet, STM32F103C8 has 64KB of Flash. However, STM32F103C8 and STM32F103CB use the same type of silicon die, which means STM32F103C8 also has 128KB ROM in theory, but ST locked the high 64KB. Basically, to force the debugger to download program can unlock the high 64KB. There is a good news that **Keil5 / IAR / RT-Studio will help you to unlock the Blue Pill Board high 64KB block** if you use this Blue Pill Board BSP as a template to create your project. You just need to press the "Flash Download" button as usual. What you only need to remember is that Blue Pill board has 128KB of Flash rather than 64KB.
-
-
-
-## 5 Read more
-
-- [[STM32 Blue Pill Board Schematic]](https://stm32duinoforum.com/forum/images/c/c1/wiki_subdomain/Vcc-gnd.com-STM32F103C8-schematic.pdf)
-- [[STM32 Blue Pill vs Black Pill Microcontroller Boards]](https://www.youtube.com/watch?v=QCdnO43RBK4&t=875s)
-- [[STM32F103C8 datasheet]]( https://www.st.com/resource/en/datasheet/stm32f103c8.pdf)
-- [[STM32F103C8 More Information (ST official)]](https://www.st.com/en/microcontrollers-microprocessors/stm32f103c8.html#overview)
-- [[RT-Thread document center]](https://www.rt-thread.io/document/site/introduction/introduction/)
-
-
-
-
-## 6 Maintained By
-
-[Meco Man](https://github.com/mysterywolf) @ RT-Thread Community
-
-jiantingman@foxmail.com 
-
+- 感谢[obito0](https://github.com/obito0)提供的[原始工程](../stm32f103-mini-system)
+- [Meco Man](https://github.com/mysterywolf): jiantingman@foxmail.com
