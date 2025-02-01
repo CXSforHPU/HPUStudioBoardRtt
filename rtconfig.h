@@ -304,10 +304,6 @@
 /* touch drivers */
 
 /* end of touch drivers */
-#define PKG_USING_BEEP
-#define PKG_BEEP_ACTIVE_BUZZER
-#define PKG_BEEP_THREAD_STACK_USING_HEAP
-#define PKG_USING_BEEP_V110
 /* end of peripheral libraries and drivers */
 
 /* AI packages */
@@ -386,16 +382,7 @@
 /* Onboard Peripheral Drivers */
 
 #define BSP_USING_USB_TO_USART
-#define BSP_USING_BEEP_EXAMPLE
 #define BSP_USING_LED
-#define BSP_USING_SG90
-#define BSP_USING_SG90_DEMO
-#define PWM_DEV_NAME "pwm2"
-#define PWM_DEV_CHANNEL 1
-#define MAX_ANGLE 2500000
-#define MIN_ANGLE 500000
-#define SG90_MAX_ANGLE 180
-#define SG90_PERIOD 20000000
 /* end of Onboard Peripheral Drivers */
 
 /* On-chip Peripheral Drivers */
@@ -404,9 +391,6 @@
 #define BSP_USING_UART
 #define BSP_USING_UART1
 #define BSP_UART1_RX_USING_DMA
-#define BSP_USING_PWM
-#define BSP_USING_PWM2
-#define BSP_USING_PWM2_CH1
 /* end of On-chip Peripheral Drivers */
 
 /* Board extended module Drivers */
